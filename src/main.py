@@ -11,7 +11,7 @@ from docling.datamodel.base_models import (
 )
 from docling.datamodel.document import ConversionResult
 from docling.datamodel.pipeline_options import EasyOcrOptions, PdfPipelineOptions
-from docling.document_converter import DocumentConverter, PdfFormatOption
+from docling.document_converter import DocumentConverter, PdfFormatOption, AcceleratorDevice, AcceleratorOptions
 from docling_core.types.doc.document import DoclingDocument
 from docling_core.types.io import DocumentStream
 from fastapi import (
@@ -44,11 +44,16 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     # Setup
     config = Config()
 
+    accelerator_options = AcceleratorOptions(
+        device=AcceleratorDevice.CUDA
+    )
+
     ocr_languages = config.ocr_languages.split(",")
     converter = DocumentConverter(
         format_options={
             InputFormat.PDF: PdfFormatOption(
                 pipeline_options=PdfPipelineOptions(
+                    accelerator_options=accelerator_options,
                     ocr_options=EasyOcrOptions(lang=ocr_languages),
                     do_code_enrichment=False,
                     do_formula_enrichment=False,
