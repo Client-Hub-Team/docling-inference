@@ -8,7 +8,7 @@ class Config(BaseSettings):
     num_workers: int | float | None = None
     log_level: str = "INFO"
     dev_mode: bool = False
-    port: int = 8080
+    port: int = 8001
     auth_token: str | None = None
     ocr_languages: str = "en,es,fr,de,sv"
     do_code_enrichment: bool = False
