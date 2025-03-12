@@ -10,8 +10,8 @@ from docling.datamodel.base_models import (
     InputFormat,
 )
 from docling.datamodel.document import ConversionResult
-from docling.datamodel.pipeline_options import EasyOcrOptions, PdfPipelineOptions
-from docling.document_converter import DocumentConverter, PdfFormatOption, AcceleratorDevice, AcceleratorOptions
+from docling.datamodel.pipeline_options import EasyOcrOptions, PdfPipelineOptions, AcceleratorDevice, AcceleratorOptions
+from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_core.types.doc.document import DoclingDocument
 from docling_core.types.io import DocumentStream
 from fastapi import (
